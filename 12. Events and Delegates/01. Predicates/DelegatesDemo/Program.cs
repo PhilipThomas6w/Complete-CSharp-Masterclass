@@ -1,10 +1,10 @@
-﻿namespace DelegatesDemo;
+﻿namespace Predicates;
 
 internal class Program
 {
     static void Main()
     {
-        // Declare a list of names and initialise
+        // Declare and initialise a list of names 
 
         List<string> names = new() { "Aiden", "Sif", "Walter", "Anatoli" };
 
@@ -17,7 +17,7 @@ internal class Program
             Console.WriteLine(name);
         }
 
-        // Now we call the RemoveAll method. The RemoveAll method takes a predicate (i.e., a type of delegate) as an argument; in this case, we will pass a method we've defined below, named Filter, as the predicate. The return type of a predicate is a bool.
+        // Now, call the RemoveAll method. The RemoveAll method takes a predicate (i.e., a type of delegate) as an argument; in this case, we will pass a method we've defined below, named Filter, as the predicate. The return type of a predicate is a bool.
         
         names.RemoveAll(Filter);    // Removes each element in names for which Filter returns true.
 

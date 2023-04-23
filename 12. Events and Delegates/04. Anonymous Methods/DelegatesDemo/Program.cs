@@ -1,4 +1,4 @@
-﻿namespace DelegatesDemo;
+﻿namespace DelegatesDemo4;
 
 internal class Program
 {
@@ -20,9 +20,30 @@ internal class Program
 
         List<Person> people = new List<Person>() { p1, p2, p3, p4 };
 
-        DisplayPeople("Kids:", people, IsMinor);
-        DisplayPeople("Adults:", people, IsAdult);
-        DisplayPeople("Seniors:", people, IsSenior);
+        //DisplayPeople("Kids:", people, IsMinor);
+        //DisplayPeople("Adults:", people, IsAdult);
+        //DisplayPeople("Seniors:", people, IsSenior);
+        //Console.WriteLine();
+        DisplayPeople("Aged 20 to 30:", people, Aged20To30);
+
+        #region Anonymous Methods
+
+        // From here...
+
+        FilterDelegate filter = delegate (Person p)
+        {
+            return p.Age >= 20 && p.Age <= 30;
+        };
+
+        DisplayPeople("Aged 20 to 30:", people, filter);
+
+        // to here, is the same as from here...
+
+        DisplayPeople("Aged 20 to 30:", people, delegate (Person p) { return p.Age >= 20 && p.Age <= 30; });
+
+        // to here.
+
+        #endregion
 
     }
 
@@ -41,19 +62,24 @@ internal class Program
 
     #region FILTERS
 
-    static bool IsMinor(Person p)
-    {
-        return p.Age < 18;
-    }
+    //static bool IsMinor(Person p)
+    //{
+    //    return p.Age < 18;
+    //}
     
-    static bool IsAdult(Person p)
-    {
-        return p.Age >= 18;
-    }
+    //static bool IsAdult(Person p)
+    //{
+    //    return p.Age >= 18;
+    //}
     
-    static bool IsSenior(Person p)
+    //static bool IsSenior(Person p)
+    //{
+    //    return p.Age >= 65;
+    //}
+
+    static bool Aged20To30(Person p)
     {
-        return p.Age >= 65;
+        return p.Age >= 20 && p.Age <= 30;
     }
 
 
